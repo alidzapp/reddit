@@ -29,9 +29,9 @@
 <div id="comments">
   <%= render :partial => @link.comments %>
 </div>
-  <%= simple_form_for [@link , Comment.new] do |f|%>
+  <%= form_for [@link , Comment.new] do |f|%>
     <div class="form-group">
-      <%= f.input :body , as: :text ,class: "form-control"%>
+      <%= f.text_field :body , as: :text ,class: "form-control" , row: "5"%>
     </div>
     <br>
     <%= f.submit "Add Comment" , class: "btn btn-primary"%>

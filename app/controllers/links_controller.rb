@@ -1,5 +1,6 @@
 class LinksController < ApplicationController
   before_action :set_link, only: [:show, :edit, :update, :destroy]
+  before_action :right_user, only: [:destroy, :edit, :update]
   before_filter :authenticate_user!, except: [:index,:show]
   # GET /links
   # GET /links.json
@@ -79,5 +80,8 @@ class LinksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def link_params
       params.require(:link).permit(:title, :url)
+    end
+    def right_user
+      redirect_to :back if current_user != @link.user
     end
 end
